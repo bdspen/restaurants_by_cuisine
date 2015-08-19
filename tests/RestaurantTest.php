@@ -60,7 +60,7 @@
 
             //Act
             $result = $test_restaurant->getCuisineId();
-
+            var_dump($test_restaurant);
             //Assert
             $this->assertEquals(true, is_numeric($result));
         }
