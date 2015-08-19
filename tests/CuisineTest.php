@@ -48,6 +48,7 @@
             //Assert
             $this->assertEquals(true, is_numeric($result));
         }
+
         function test_save()
         {
             //Arrange
@@ -77,6 +78,41 @@
 
             //Assert
             $this->assertEquals([$test_cuisine, $test_cuisine2], $result);
+        }
+
+        function test_deleteAll()
+        {
+            //Arrange
+            $type = "french";
+            $type2 = "mexican";
+            $test_cuisine = new Cuisine($type);
+            $test_cuisine->save();
+            $test_cuisine2 = new Cuisine($type);
+            $test_cuisine2->save();
+
+            //Act
+            Cuisine::deleteAll();
+            $result = Cuisine::getAll();
+
+            //Assert
+            $this->assertEquals([], $result);
+        }
+
+        function test_find()
+        {
+            //Arrange
+            $type = "french";
+            $type2 = "mexican";
+            $test_cuisine = new Cuisine($type);
+            $test_cuisine->save();
+            $test_cuisine2 = new Cuisine($type);
+            $test_cuisine2->save();
+
+            //Act
+            $result = Cuisine::find($test_cuisine->getId());
+
+            //Assert
+            $this->assertEquals($test_cuisine, $result);
         }
     }
 
