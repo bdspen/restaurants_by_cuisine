@@ -58,11 +58,13 @@
         function save()
         {
             $GLOBALS['DB']->exec("INSERT INTO tasks (id, name, phone, price, cuisine_id)
-            VALUES ({$this->getId()},
-            '{$this->getName()}',
-            '{$this->getPhone()}',
-            '{$this->getPrice()}',
-            {$this->getCuisineId()});");
+            VALUES (
+                {$this->getId()},
+                '{$this->getName()}',
+                '{$this->getPhone()}',
+                '{$this->getPrice()}',
+                {$this->getCuisineId()}
+            );");
 
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
