@@ -59,6 +59,19 @@
             }
             return $found_cuisine;
         }
+        static function search($search_type)
+        {
+            $found_cuisine = null;
+            $cuisines = Cuisine::getAll();
+            foreach($cuisines as $cuisine) {
+                $cuisine_type = $cuisine->getCuisineType();
+                if ($cuisine_type == $search_type) {
+                    $found_cuisine_type = $cuisine;
+                }
+            }
+            return $found_cuisine_type;
+        }
+
     }
 
  ?>

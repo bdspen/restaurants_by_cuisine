@@ -114,6 +114,20 @@
             //Assert
             $this->assertEquals($test_cuisine, $result);
         }
+
+        function test_search()
+        {
+            //Arrange
+            $type = "french";
+            $test_cuisine = new Cuisine($type);
+            $test_cuisine->save();
+
+            //Act
+            $result = Cuisine::search($test_cuisine->getCuisineType());
+
+            //Assert
+            $this->assertEquals($test_cuisine, $result);
+        }
     }
 
 ?>
