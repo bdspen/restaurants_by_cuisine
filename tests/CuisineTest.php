@@ -14,11 +14,11 @@
 
     class CuisineTest extends PHPUnit_Framework_TestCase
     {
-        // protected function tearDown()
-        // {
-        //     Cuisine::deleteAll();
-        //     Restaurant::deleteAll();
-        // }
+        protected function tearDown()
+        {
+            Cuisine::deleteAll();
+            // Restaurant::deleteAll();
+        }
 
         function test_getCuisineType()
         {
