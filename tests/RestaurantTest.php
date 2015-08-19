@@ -83,7 +83,7 @@
 
             //Act
             $result = Restaurant::getAll();
-            var_dump($result);
+
 
 
             //Assert
@@ -117,6 +117,35 @@
 
             //Assert
             $this->assertEquals([$test_restaurant, $test_restaurant2], $result);
+        }
+
+        function test_find()
+        {
+            //Arrange
+            $type = "french";
+            $id = null;
+            $test_cuisine = new Cuisine($type, $id);
+            $test_cuisine->save();
+
+            $name = "Petit Provence";
+            $phone = "555-555-5555";
+            $price = "$$";
+            $cuisine_id = $test_cuisine->getId();
+            $test_restaurant = new Restaurant($name, $phone, $price, $cuisine_id);
+            $test_restaurant->save();
+
+
+            $name2 = "Escargot";
+            $phone2 = "666-666-6666";
+            $price2 = "$$$";
+            $test_restaurant2 = new Restaurant($name2, $phone2, $price2, $cuisine_id);
+            $test_restaurant2->save();
+
+            //Act
+            $result = Restaurant::find($test_restaurant->getId());
+
+            //Assert
+            $this->assertEquals($test_restaurant, $result);
         }
 
 
