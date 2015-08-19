@@ -1,0 +1,56 @@
+Interface:  Page with form for user to add or select a type of cuisine followed by
+            another page listing relevant restaurants as well as a form to add new restaurants.
+
+    CUISINE:
+
+    1.  Behavior: Add type of cuisine.
+        Input: 'french'
+        Output: 'french'
+
+    2.  Behavior: Assign id#
+        Input: 1
+        Output: 1
+
+    3.  Behavior: Save/get all types to/from db
+        Input: 'french' 'mexican'
+        Output: 'french' 'mexican'
+
+    4.  Behavior: Delete all cuisine types from db
+        Input: 'french' 'mexican'
+        Output: [] (empty array)
+
+    5.  Behavior: Find a cuisine by id via hidden form
+        Input: 1
+        Output: 'french' (list of associated restaurants)
+
+    6.  Behavior: Get restaurants by type of cuisine
+        Input: 'french'
+        Output: list of associated restaurants
+
+    7.  Behavior: Search for restaurants by type of cuisine
+        Input: 'french'
+        Output: list of associated restaurants
+
+
+    RESTAURANT:
+
+    1.  Behavior: Add properties to a restaurant
+        Input: name = petit provence, phone = (555) 555-5555
+               price = $$
+        Output: name = petit provence, phone = (555) 555-5555
+               price = $$ cuisineid = 1
+
+    2.  Behavior: Add Id # to restaurant
+        Input = restaurant properties
+        Output = 1
+
+    3.  Behavior: Save/get all restaurants to/from db
+        Input: 'french' 'mexican'
+        Output: 'french' 'mexican'
+
+    4.  Behavior: Delete all restaurants from db
+        Input: 'french' 'mexican'
+        Output: [] (empty array)
+
+
+    
