@@ -55,9 +55,9 @@
             $phone = "555-555-5555";
             $price = "$$";
             $cuisine_id = $test_cuisine->getId();
-            $test_restaurant = new Restaurant($id, $name, $phone, $price, $cuisine_id);
+            $test_restaurant = new Restaurant($name, $phone, $price, $cuisine_id);
             $test_restaurant->save();
-            var_dump($test_restaurant);
+
             //Act
             $result = $test_restaurant->getCuisineId();
 
@@ -77,14 +77,16 @@
             $phone = "555-555-5555";
             $price = "$$";
             $cuisine_id = $test_cuisine->getId();
-            $test_restaurant = new Restaurant($id, $name, $phone, $price, $cuisine_id);
+            $test_restaurant = new Restaurant($name, $phone, $price, $cuisine_id, $id);
             $test_restaurant->save();
+
 
             //Act
-            $test_restaurant->save();
+            $result = Restaurant::getAll();
+            var_dump($result);
+
 
             //Assert
-            $result = Restaurant::getAll();
             $this->assertEquals($test_restaurant, $result[0]);
         }
 
@@ -100,13 +102,14 @@
             $phone = "555-555-5555";
             $price = "$$";
             $cuisine_id = $test_cuisine->getId();
-            $test_restaurant = new Restaurant($id, $name, $phone, $price, $cuisine_id);
+            $test_restaurant = new Restaurant($name, $phone, $price, $cuisine_id);
             $test_restaurant->save();
+
 
             $name2 = "Escargot";
             $phone2 = "666-666-6666";
             $price2 = "$$$";
-            $test_restaurant2 = new Restaurant($id, $name2, $phone2, $price2, $cuisine_id);
+            $test_restaurant2 = new Restaurant($name2, $phone2, $price2, $cuisine_id);
             $test_restaurant2->save();
 
             //Act
@@ -117,27 +120,6 @@
         }
 
 
-
-
-
-        // function test_getRestaurant()
-        // {
-        //     //Arrange
-        //     $id = null;
-        //     $name = 'petit provence';
-        //     $phone = '555-555-5555';
-        //     $price = '$$';
-        //     $cuisine_id = 1;
-        //     $test_restaurant = new Restaurant($id, $name, $phone, $price, $cuisine_id);
-        //
-        //
-        //     //Act
-        //     $result = $test_restaurant->getRestaurant();
-        //
-        //     //Assert
-        //
-        //     $this->assertEquals($test_restaurant, $result);
-        // }
     }
 
  ?>

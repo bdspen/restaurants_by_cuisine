@@ -7,12 +7,13 @@
         private $cuisine_id;
         private $id;
 
-        function __construct($id = null, $name, $phone, $price, $cuisine_id)
+        function __construct($name, $phone, $price, $cuisine_id, $id = null)
         {
-            $this->id = $id;
             $this->name = $name;
             $this->phone = $phone;
+            $this->price = $price;
             $this->cuisine_id = $cuisine_id;
+            $this->id = $id;
         }
 
         function getId()
@@ -57,9 +58,8 @@
 
         function save()
         {
-            $GLOBALS['DB']->exec("INSERT INTO tasks (id, name, phone, price, cuisine_id)
+            $GLOBALS['DB']->exec("INSERT INTO restaurants (name, phone, price, cuisine_id)
             VALUES (
-                {$this->getId()},
                 '{$this->getName()}',
                 '{$this->getPhone()}',
                 '{$this->getPrice()}',
@@ -67,6 +67,22 @@
             );");
 
             $this->id = $GLOBALS['DB']->lastInsertId();
+        }
+
+        static function getAll()
+        {
+            $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurants;");
+            $restaurants = array();
+            foreach($returned_restaurants as $restaurant) {
+                $name = $restaurant['name'];
+                $phone = $restaurant['phone'];
+                $price = $restaurant['price'];
+                $cuisine_id = $restaurant['cuisine_id'];
+                $id = $restaurant['id'];
+                $new_restaurant = new Restaurant($name, $phone, $price, $cuisine_id, $id);
+                array_push($restaurants, $new_restaurant);
+            }
+            return $restaurants;
         }
 
         static function deleteAll()
