@@ -129,7 +129,7 @@
             $this->assertEquals($test_cuisine, $result);
         }
 
-        function testGetRestaurants()
+        function test_GetRestaurants()
         {
             //Arrange
             $type = "french";
@@ -154,7 +154,7 @@
             $test_restaurant2->save();
 
             //Act
-            $result = Restaurant::getRestaurants();
+            $result = $test_cuisine->getRestaurants();
 
             //Assert
             $this->assertEquals([$test_restaurant, $test_restaurant2], $result);
