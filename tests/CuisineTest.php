@@ -128,6 +128,37 @@
             //Assert
             $this->assertEquals($test_cuisine, $result);
         }
+
+        function testGetRestaurants()
+        {
+            //Arrange
+            $type = "french";
+            $id = null;
+            $test_cuisine = new Cuisine($type, $id);
+            $test_cuisine->save();
+
+            $test_type_id = $test_cuisine->getId();
+
+            $name = "Petit Provence";
+            $phone = "555-555-5555";
+            $price = "$$";
+            $cuisine_id = $test_cuisine->getId();
+            $test_restaurant = new Restaurant($name, $phone, $price, $cuisine_id);
+            $test_restaurant->save();
+
+
+            $name2 = "Escargot";
+            $phone2 = "666-666-6666";
+            $price2 = "$$$";
+            $test_restaurant2 = new Restaurant($name2, $phone2, $price2, $cuisine_id);
+            $test_restaurant2->save();
+
+            //Act
+            $result = Restaurant::getRestaurants();
+
+            //Assert
+            $this->assertEquals([$test_restaurant, $test_restaurant2], $result);
+        }
     }
 
 ?>
