@@ -1,0 +1,39 @@
+<html>
+<head>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+    <title>Best Restaurants in Town!</title>
+</head>
+<body>
+    <div class='container'>
+        <h1>Best Restaurants in Town!</h1>
+
+        <h3>Choose or add a cuisine to get started:</h3>
+
+        <form action='/cuisines' method='post'>
+            <div class='form-group'>
+                <label for='type'>Cuisine type:</label>
+                <input id='type' name='type' type='text' class='form-control'>
+            </div>
+            <button type='submit' class='btn btn-info'>Add cuisine</button>
+        </form>
+
+        {% if cuisines is not empty %}
+            <p>Choose a cuisine:</p>
+            <ul>
+                {% for cuisine in cuisines %}
+                    <li><a href='/cuisines/{{ cuisine.getId }}' role='button' class='btn btn-default'>{{ cuisine.getCuisineType }}</a></li>
+                {% endfor %}
+            </ul>
+            <form action='/delete_restaurants' method='post'>
+                <button type='submit' class='btn btn-warning btn-lg'>Clear Restaurants</button>
+            </form>
+            <form action='/delete_cuisines' method='post'>
+                <button type='submit' class='btn btn-danger btn-lg'>Clear Cuisines AND Restaurants</button>
+            </form>
+        {% else %}
+            <p>No cuisines to choose from yet!</p>
+        {% endif %}
+
+    </div>
+</body>
+</html>

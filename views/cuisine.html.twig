@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+        <title>{{ cuisine.getCuisineType }}</title>
+    </head>
+    <body>
+        <div class='container'>
+            <h1>{{ cuisine.getCuisineType }} Restaurants:</h1>
+
+            {% if restaurants is not empty %}
+
+                {% for restaurant in restaurants %}
+                    <h3>{{ restaurant.getName }}</h3>
+                    <li>{{ restaurant.getPhone }}</li>
+                    <li>{{ restaurant.getPrice }}</li>
+                {% endfor %}
+                <form action='/delete_restaurants' method='post'>
+                    <button type='submit' class='btn btn-warning btn-lg'>Clear Restaurants</button>
+                </form>
+            {% else %}
+                <p>No restaurants added yet!</p>
+
+            {% endif %}
+
+            <form action='/restaurants' method='post'>
+                <input type='hidden' name='cuisine_id' value='{{ cuisine.getId() }}'>
+
+                <input type='text' name='name' placeholder='Restaurant Name'>
+                <input type='text' name='phone' placeholder='Phone Number'>
+                <label for='price'>Price</label>
+                <select name='price'>
+                    <option value='$'>$</option>
+                    <option value='$$'>$$</option>
+                    <option value='$$$'>$$$</option>
+                    <option value='$$$$'>$$$$</option>
+                </select>
+                <button type='submit'>Add Restaurant</button>
+            </form>
+
+                <a href='/'>Home</a>
+
+        </div>
+
+    </body>
+</html>
