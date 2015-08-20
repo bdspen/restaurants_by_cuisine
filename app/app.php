@@ -50,7 +50,8 @@
 
     $app->post("/delete_restaurants", function() use ($app) {
         Restaurant::deleteAll();
-        return $app['twig']->render('index.html.twig', array('cuisines' => Cuisine::getAll()));
+        $cuisine = Cuisine::find($_POST['cuisine_id']);
+        return $app['twig']->render('cuisine.html.twig', array('cuisine' => $cuisine, 'cuisines' => $cuisine->getRestaurants()));
     });
 
     $app->post("/delete_cuisines", function() use ($app) {

@@ -159,6 +159,28 @@
             //Assert
             $this->assertEquals([$test_restaurant, $test_restaurant2], $result);
         }
+
+        function test_deleteCuisine()
+        {
+            //Arrange
+            $type = "french";
+            $id = null;
+            $test_cuisine = new Cuisine($type, $id);
+            $test_cuisine->save();
+
+            $name = "Petit Provence";
+            $phone = "555-555-5555";
+            $price = "$$";
+            $cuisine_id = $test_cuisine->getId();
+            $test_restaurant = new Restaurant($id, $name, $phone, $price, $cuisine_id);
+            $test_restaurant->save();
+
+            //Act
+            $test_cuisine->delete();
+
+            //Assert
+            $this->assertEquals([], Cuisine::getAll());
+        }
     }
 
 ?>

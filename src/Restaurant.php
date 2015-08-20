@@ -90,6 +90,11 @@
             $GLOBALS['DB']->exec("DELETE FROM restaurants;");
         }
 
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE id = {$this->getId()};");
+        }
+
         static function find($search_id)
         {
             $found_restaurant = null;
