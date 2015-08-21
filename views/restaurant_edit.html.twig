@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+        <title>Edit a Restaurant</title>
+    </head>
+    <body>
+        <div class='container'>
+            <h1>Update {{ restaurant.getName }}</h1>
+
+            <!-- hidden form carries restaurant info to next route-->
+            <form action='/restaurants/{{ restaurant.getId }}' method='post'>
+                <input name='_method' type='hidden' value='patch'>
+
+                <div class="form-group">
+                <label for='name'>Edit the restaurant name:</label>
+                <input id='name' name='name' type='text'>
+
+                <label for='phone'>Edit the restaurant's phone number:</label>
+                <input id='phone' name='phone' type='text'>
+
+                <label for='price'>Price</label>
+                <select name='price'>
+                    <option value='$'>$</option>
+                    <option value='$$'>$$</option>
+                    <option value='$$$'>$$$</option>
+                    <option value='$$$$'>$$$$</option>
+                </select>
+
+
+                <button type='submit'>Update</button>
+                </div>
+        </div>
+    </body>
+</html>

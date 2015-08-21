@@ -13,10 +13,10 @@
                     <h3>{{ restaurant.getName }}</h3>
                     <li>{{ restaurant.getPhone }}</li>
                     <li>{{ restaurant.getPrice }}</li>
+
+                    <p><a href="/restaurants/{{ restaurant.getId }}/edit">Edit this restaurant</a></p>
                 {% endfor %}
-                <form action='/delete_restaurants' method='post'>
-                    <button type='submit' class='btn btn-warning btn-lg'>Clear Restaurants</button>
-                </form>
+    
             {% else %}
                 <p>No restaurants added yet!</p>
 
@@ -36,8 +36,10 @@
                 </select>
                 <button type='submit'>Add Restaurant</button>
             </form>
+            <p><a href="/cuisines/{{ cuisine.getId }}/edit">Edit this cuisine</a></p>
 
-                <a href='/'>Home</a>
+
+            <p><a href='/'>Home</a></p>
 
         </div>
 

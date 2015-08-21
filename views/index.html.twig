@@ -24,9 +24,7 @@
                     <li><a href='/cuisines/{{ cuisine.getId }}' role='button' class='btn btn-default'>{{ cuisine.getCuisineType }}</a></li>
                 {% endfor %}
             </ul>
-            <form action='/delete_restaurants' method='post'>
-                <button type='submit' class='btn btn-warning btn-lg'>Clear Restaurants</button>
-            </form>
+
             <form action='/delete_cuisines' method='post'>
                 <button type='submit' class='btn btn-danger btn-lg'>Clear Cuisines AND Restaurants</button>
             </form>

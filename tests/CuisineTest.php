@@ -181,6 +181,23 @@
             //Assert
             $this->assertEquals([], Cuisine::getAll());
         }
+
+        function testUpdate()
+        {
+            //Arrange
+            $type = "french";
+            $id = null;
+            $test_cuisine = new Cuisine($type, $id);
+            $test_cuisine->save();
+
+            $new_type = "mexican";
+
+            //Act
+            $test_cuisine->update($new_type);
+
+            //Assert
+            $this->assertEquals("mexican", $test_cuisine->getCuisineType());
+        }
     }
 
 ?>

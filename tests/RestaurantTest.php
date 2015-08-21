@@ -169,6 +169,72 @@
             //Assert
             $this->assertEquals([], Restaurant::getAll());
         }
+
+        function test_deleteInCuisine()
+        {
+            //Arrange
+            $type = "french";
+            $id = null;
+            $test_cuisine = new Cuisine($type, $id);
+            $test_cuisine->save();
+
+            $name = "Petit Provence";
+            $phone = "555-555-5555";
+            $price = "$$";
+            $cuisine_id = $test_cuisine->getId();
+            $test_restaurant = new Restaurant($name, $phone, $price, $cuisine_id);
+            $test_restaurant->save();
+
+
+            $name2 = "Escargot";
+            $phone2 = "666-666-6666";
+            $price2 = "$$$";
+            $cuisine_id2 = $test_cuisine->getId();
+            $test_restaurant2 = new Restaurant($name2, $phone2, $price2, $cuisine_id);
+            $test_restaurant2->save();
+
+            //Act
+            $test_restaurant->deleteInCuisine();
+
+            //Assert
+            $this->assertEquals([], Restaurant::getAll());
+        }
+
+        function testUpdate()
+        {
+            //Arrange
+            $type = "french";
+            $id = null;
+            $test_cuisine = new Cuisine($type, $id);
+            $test_cuisine->save();
+
+            $name = "Petit Provence";
+            $phone = "555-555-5555";
+            $price = "$$";
+            $cuisine_id = $test_cuisine->getId();
+            // $id = null;
+            $test_restaurant = new Restaurant($name, $phone, $price, $cuisine_id);
+            $test_restaurant->save();
+
+            $new_name = "Escargot";
+            $new_phone = "666-666-6666";
+            $new_price = "$$$";
+            // $cuisine_id = 1;
+            // $new_id = null;
+            $new_test_restaurant = new Restaurant($new_name, $new_phone, $new_price, $cuisine_id, $test_restaurant->getId());
+            // $new_test_restaurant->save();
+            // var_dump($new_test_restaurant);
+
+
+            //Act
+            $test_restaurant->update($new_name, $new_phone, $new_price);
+
+
+
+            //Assert
+            $this->assertEquals($test_restaurant, $new_test_restaurant);
+        }
+
     }
 
  ?>
